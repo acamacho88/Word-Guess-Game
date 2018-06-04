@@ -12,7 +12,9 @@ var bandsList = [
 
 var nWins = 0;
 
-var guesses = [];
+var badGuesses = [];
+
+var goodGuesses = [];
 
 var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
@@ -20,7 +22,7 @@ var currWord = '';
 
 var guessSpace = document.getElementById('guess-spaces');
 
-var guessStatus = '';
+var statusText = '';
 
 function isAlpha(letter) {
     for (var i = 0; i < alphabet.length; i++) {
@@ -33,7 +35,7 @@ function isAlpha(letter) {
 
 function newBand() {
     currWord = bandsList[Math.floor(Math.random() * bandsList.length)];
-    var statusText = '';
+    statusText = '';
     for (var i = 0; i < currWord.length - 1; i++) {
         if (currWord[i] == ' ') {
             statusText += '  ';
@@ -45,15 +47,43 @@ function newBand() {
     guessSpace.textContent = statusText;
 }
 
+function isNewGuess(letter) {
+    for (var i = 0; i < badGuesses.length; i++) {
+        if (letter == badGuesses[i]) {
+            return false;
+        }
+    }
+    for (var i = 0; i < goodGuesses.length; i++) {
+        if (letter == goodGuesses[i]) {
+            return false;
+        }
+    }
+    return true;
+}
 
-// function to fill in word spaces
+function validGuess(letter) {
+    var goodWord = false;
+    for (var i = 0; i < currWord.length; i++) {
+        if (letter == currWord[i].toLowerCase()) {
+            goodWord = true;
+            statusText[i*2] = currWord[i];
+        }
+    }
+    if (goodWord) {
+        guessSpace.textContent = statusText;
+        goodGuesses.push(letter)
+    } else {
+        badGuesses.push(letter);
+    }
+}
+
 newBand();
-
 
 document.onkeyup = function(event) {
     var i = event.key;
-    // if key is in alphabet:
-      // if key is not a previous guess
+    if(isAlpha(i) && isNewGuess(i)) {
+        validGuess(i);
+    }
         // evaluate if key is good/bad letter
         // if good letter, display in status
         // if bad letter, add to guesses, subtract one from guess count
