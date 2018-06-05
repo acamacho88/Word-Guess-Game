@@ -16,7 +16,7 @@ var badGuesses = [];
 
 var goodGuesses = [];
 
-var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+var alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
 var currWord = '';
 
@@ -33,9 +33,42 @@ function isAlpha(letter) {
     return false;
 }
 
+function updateStatusString() {
+    var statusString = '';
+    var letterCheck = false;
+    var anyUnderscores = false;
+    for (var i = 0; i < currWord.length; i++) {
+        for (var j = 0; j < goodGuesses.length; j++) {
+            if (currWord[i].toLowerCase() == goodGuesses[j]) {
+                statusString += currWord[i];
+                letterCheck = true;
+            }
+        }
+        if (!letterCheck) {
+            if (currWord[i] !== ' ') {
+                statusString += '_';
+                anyUnderscores = true;
+            } else {
+                statusString += ' ';
+            }
+        }
+        letterCheck = false;
+        if (i < currWord.length - 1) {
+            statusString += ' ';
+        }
+    }
+    if (anyUnderscores) {
+        guessSpace.textContent = statusString;
+    } else {
+        newBand();
+        nWins++;
+    }
+}
+
 function newBand() {
     currWord = bandsList[Math.floor(Math.random() * bandsList.length)];
-    statusText = '';
+
+    /*statusText = '';
     for (var i = 0; i < currWord.length - 1; i++) {
         if (currWord[i] == ' ') {
             statusText += '  ';
@@ -44,7 +77,10 @@ function newBand() {
         }
     }
     statusText += '_';
-    guessSpace.textContent = statusText;
+    guessSpace.textContent = statusText;*/
+    goodGuesses = [];
+    badGuesses = [];
+    updateStatusString();
 }
 
 function isNewGuess(letter) {
@@ -66,12 +102,11 @@ function validGuess(letter) {
     for (var i = 0; i < currWord.length; i++) {
         if (letter == currWord[i].toLowerCase()) {
             goodWord = true;
-            statusText[i*2] = currWord[i];
         }
     }
     if (goodWord) {
-        guessSpace.textContent = statusText;
-        goodGuesses.push(letter)
+        goodGuesses.push(letter);
+        updateStatusString();
     } else {
         badGuesses.push(letter);
     }
