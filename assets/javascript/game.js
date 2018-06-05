@@ -22,6 +22,8 @@ var currWord = '';
 
 var guessSpace = document.getElementById('guess-spaces');
 
+var numberWins = document.getElementById('nwins');
+
 var statusText = '';
 
 function isAlpha(letter) {
@@ -62,22 +64,12 @@ function updateStatusString() {
     } else {
         newBand();
         nWins++;
+        numberWins.textContent = nWins;
     }
 }
 
 function newBand() {
     currWord = bandsList[Math.floor(Math.random() * bandsList.length)];
-
-    /*statusText = '';
-    for (var i = 0; i < currWord.length - 1; i++) {
-        if (currWord[i] == ' ') {
-            statusText += '  ';
-        } else {
-            statusText += '_ ';
-        }
-    }
-    statusText += '_';
-    guessSpace.textContent = statusText;*/
     goodGuesses = [];
     badGuesses = [];
     updateStatusString();
@@ -109,6 +101,9 @@ function validGuess(letter) {
         updateStatusString();
     } else {
         badGuesses.push(letter);
+        if (badGuesses.length == 13) {
+            newBand();
+        }
     }
 }
 
@@ -119,8 +114,4 @@ document.onkeyup = function(event) {
     if(isAlpha(i) && isNewGuess(i)) {
         validGuess(i);
     }
-        // evaluate if key is good/bad letter
-        // if good letter, display in status
-        // if bad letter, add to guesses, subtract one from guess count
-          // if bad letter and guess count is 0, switch to a new word, reset guess count, empty guess array
 }
