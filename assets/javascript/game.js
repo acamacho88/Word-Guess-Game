@@ -64,7 +64,6 @@ function updateStatusString() {
     } else {
         nWins++;
         newBand();
-        //numberWins.textContent = nWins;
     }
 }
 
@@ -73,7 +72,7 @@ function newBand() {
     goodGuesses = [];
     badGuesses = [];
     numberWins.textContent = nWins;
-    numberGuesses.textContent = 0;
+    numberGuesses.textContent = 13;
     updateStatusString();
 }
 
@@ -106,7 +105,7 @@ function validGuess(letter) {
         if (badGuesses.length == 13) {
             newBand();
         }
-        numberGuesses.textContent = badGuesses.length;
+        numberGuesses.textContent = 13 - badGuesses.length;
     }
 }
 
