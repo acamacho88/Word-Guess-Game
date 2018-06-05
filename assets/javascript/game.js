@@ -24,7 +24,7 @@ var guessSpace = document.getElementById('guess-spaces');
 
 var numberWins = document.getElementById('nwins');
 
-var statusText = '';
+var numberGuesses = document.getElementById('nguesses');
 
 function isAlpha(letter) {
     for (var i = 0; i < alphabet.length; i++) {
@@ -62,9 +62,9 @@ function updateStatusString() {
     if (anyUnderscores) {
         guessSpace.textContent = statusString;
     } else {
-        newBand();
         nWins++;
-        numberWins.textContent = nWins;
+        newBand();
+        //numberWins.textContent = nWins;
     }
 }
 
@@ -72,6 +72,8 @@ function newBand() {
     currWord = bandsList[Math.floor(Math.random() * bandsList.length)];
     goodGuesses = [];
     badGuesses = [];
+    numberWins.textContent = nWins;
+    numberGuesses.textContent = 0;
     updateStatusString();
 }
 
@@ -104,6 +106,7 @@ function validGuess(letter) {
         if (badGuesses.length == 13) {
             newBand();
         }
+        numberGuesses.textContent = badGuesses.length;
     }
 }
 
