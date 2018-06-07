@@ -8,23 +8,23 @@
     </head>
     <body>
         <h1>Heavy Metal Hangman</h1>
-        <table id="game-table">
-            <tr>
-                <td>
-                    <!-- game icon will go here -->
-                </td>
-                <td>
-                    <p>Press any key to get started!</p>
-                    <p>Wins: <span id="nwins"></span></p>
-                    <p>Current word</p>
-                    <p id="guess-spaces"> </p>
-                    <p>Number of guesses remaining</p>
-                    <p id="nguesses"> </p>
-                    <p>Letters already guessed</p>
-                    <p id="letters-guessed"> </p>
-                </td>
-            </tr>
-        </table>
+        <div id="img-placeholder">
+            <img id="winning-img">
+        </div>
+        <div id="main-content">
+            <p>Press any key to get started!</p>
+            <br>
+            <p>Wins: <span id="nwins"></span></p>
+            <br>
+            <p>Current word</p>
+            <pre id="guess-spaces"> </pre>
+            <br>
+            <p>Number of guesses remaining</p>
+            <p id="nguesses"> </p>
+            <br>
+            <p>Letters already guessed</p>
+            <p id="letters-guessed"> </p>
+        </div>
         <script type="text/javascript" src="assets/javascript/game.js"></script>
     </body>
 </html>

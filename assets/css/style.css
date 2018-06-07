@@ -1,0 +1,42 @@
+@font-face {
+    font-family: "Metalfont";
+    src:url("../fonts/maiden.TTF");
+}
+
+@font-face {
+    font-family: "Metalfont2";
+    src:url("../fonts/squealer.ttf");
+}
+
+body {
+    background-color: black;
+    color: red;
+    line-height: normal;
+}
+
+h1 {
+    font-family: "Metalfont";
+    font-weight: bold;
+    font-size: 60px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+#main-content {
+    text-align: center;
+    font-family: "Metalfont2";
+    letter-spacing: 2px;
+}
+
+#guess-spaces {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#img-placeholder {
+    text-align: center;
+}
+
+#winning-img {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
