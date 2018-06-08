@@ -52,6 +52,24 @@ var bandsList = {
      "image":"assets/images/motorhead.jpg",
      "audio":"assets/audio/11 Motorhead.m4a",
      "color":"black"
+    },
+    "Queensryche":
+    {
+     "image":"assets/images/queensryche.jpg",
+     "audio":"assets/audio/09 The Needle Lies.m4a",
+     "color":"#7b7b7d"
+    },
+    "Black Sabbath":
+    {
+     "image":"assets/images/blacksabbath.jpg",
+     "audio":"assets/audio/08 Into the Void.mp3",
+     "color":"black"
+    },
+    "Saxon":
+    {
+     "image":"assets/images/saxon.jpg",
+     "audio":"assets/audio/09 Machine Gun.m4a",
+     "color":"#17151a"
     }
 };
 
